@@ -1,30 +1,30 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Lncodes.Example.Generic
 {
-    public sealed class QuizController<TQuestion, TCorrectAnswer, TChoice> where TChoice : ICollection
+    public sealed class QuizController<TQuestion, TAnswer, TChoice> where TChoice : ICollection<TAnswer>
     {
+        public readonly TAnswer Answer;
         public readonly TQuestion Question;
         public readonly TChoice ChoiceCollection;
-        public readonly TCorrectAnswer CorrectAnswer;
 
         // Constructor
-        public QuizController(TQuestion question, TCorrectAnswer correctAnswer, TChoice choiceCollection) =>
-            (Question, CorrectAnswer, ChoiceCollection) = (question, correctAnswer, choiceCollection);
+        public QuizController(TQuestion question, TAnswer answer, TChoice choiceCollection) =>
+            (Question, Answer, ChoiceCollection) = (question, answer, choiceCollection);
 
         /// <summary>
-        /// Method For Check a Answer
+        /// Method to Check a Answer
         /// </summary>
         /// <param name="answer">User Answer</param>
-        public void CheckAnswer(TCorrectAnswer answer)
+        public void CheckAnswer(TAnswer answer)
         {
-            if (answer.Equals(CorrectAnswer))
+            if (answer.Equals(Answer))
                 Console.WriteLine("Answer correct");
             else
             {
                 Console.WriteLine("Answer wrong");
-                Console.WriteLine($"The correct answer is {CorrectAnswer}");
+                Console.WriteLine($"The correct answer is {this.Answer}");
             }
         }
     }
