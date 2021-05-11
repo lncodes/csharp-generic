@@ -15,7 +15,6 @@ namespace Lncodes.Example.Generic
         /// </summary>
         private static void Main()
         {
-            //Create QuizController Instance
             var correctAnswer = 2;
             var question = "1 + 1 =";
             var choiceCollection = new int[] { 1, 2, 3, 4 };
