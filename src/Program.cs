@@ -1,17 +1,29 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Lncodes.Example.Generic
 {
     public class Program
     {
-        static void Main()
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        protected Program() { }
+
+        /// <summary>
+        /// Main Program
+        /// </summary>
+        private static void Main()
         {
             //Create QuizController Instance
-            var quizController = new QuizController<string, int, int[]>(question: "1 + 1 =", correctAnswer: 2, choiceCollection: new[] { 1, 2, 3, 4 });
-            
+            var correctAnswer = 2;
+            var question = "1 + 1 =";
+            var choiceCollection = new int[] { 1, 2, 3, 4 };
+            var quizController = new QuizController<string, int, int[]>(question, correctAnswer, choiceCollection);
+
             ShowQuizQuestion(quizController);
-            CheckAnswer(quizController, Convert.ToInt32(GetUserAnswer()));
+            var userAnswer = Convert.ToInt32(GetUserAnswer());
+            CheckAnswer(quizController, userAnswer);
         }
 
         /// <summary>
@@ -31,7 +43,7 @@ namespace Lncodes.Example.Generic
         /// <typeparam name="TAnswer"></typeparam>
         /// <typeparam name="TChoice"></typeparam>
         /// <param name="quizController"></param>
-        private static void ShowQuizQuestion<TQuestion,TAnswer,TChoice>(QuizController<TQuestion,TAnswer,TChoice> quizController) where TChoice : ICollection
+        private static void ShowQuizQuestion<TQuestion, TAnswer, TChoice>(QuizController<TQuestion, TAnswer, TChoice> quizController) where TChoice : ICollection<TAnswer>
         {
             Console.WriteLine("Quiz Program \n");
             Console.WriteLine($"Question : {quizController.Question}");
@@ -49,7 +61,7 @@ namespace Lncodes.Example.Generic
         /// <typeparam name="TChoice"></typeparam>
         /// <param name="quizController"></param>
         /// <param name="userAnswer"></param>
-        private static void CheckAnswer<TQusetion,TAnswer,TChoice>(QuizController<TQusetion,TAnswer,TChoice> quizController, TAnswer userAnswer) where TChoice : ICollection
+        private static void CheckAnswer<TQusetion, TAnswer, TChoice>(QuizController<TQusetion, TAnswer, TChoice> quizController, TAnswer userAnswer) where TChoice : ICollection<TAnswer>
         {
             Console.WriteLine();
             quizController.CheckAnswer(userAnswer);
