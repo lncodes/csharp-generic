@@ -43,7 +43,7 @@ jobs:
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
       - name: Build project for analysis
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./src --configuration Release --no-restore
 
       - name: End SonarCloud Analysis
         run: ./.sonar/scanner/dotnet-sonarscanner end \
