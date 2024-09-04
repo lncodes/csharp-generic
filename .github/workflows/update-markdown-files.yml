@@ -1,0 +1,49 @@
+name: Update Markdown Files
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  update-markdown:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Update Placeholders in Markdown Files
+      run: |
+        REPO_NAME=$(basename $GITHUB_REPOSITORY)
+        REPO_URL="https://github.com/$GITHUB_REPOSITORY"
+
+        # Flag to track if any files were updated
+        CHANGES_MADE=false
+
+        # Loop through all .md files in the docs folder
+        for file in ./docs/*.md; do
+          # Use sed to replace placeholders
+          sed -i "s/{{REPOSITORY_NAME}}/$REPO_NAME/g" "$file"
+          sed -i "s|{{REPOSITORY_URL}}|$REPO_URL|g" "$file"
+        done
+
+        # Check for changes in the docs directory
+        if git diff --quiet ./docs; then
+          echo "No files have been updated."
+        else
+          echo "Files have been updated."
+          CHANGES_MADE=true
+        fi
+
+        # Save the flag to a file to be checked in the next step
+        echo "CHANGES_MADE=$CHANGES_MADE" >> $GITHUB_ENV
+
+    - name: Commit and Push Changes
+      if: env.CHANGES_MADE == 'true'
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'actions@github.com'
+        git add ./docs/*.md
+        git commit -m 'Update Markdown files in docs folder with repository name and link'
+        git push
