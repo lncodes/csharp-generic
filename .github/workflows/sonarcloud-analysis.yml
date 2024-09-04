@@ -18,7 +18,7 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.x'  # Ensure this matches the SDK version used in the build workflow
+          dotnet-version: '8.x'
 
       - name: Cache SonarCloud scanner
         id: cache-sonar-scanner
@@ -38,7 +38,6 @@ jobs:
         run: ./.sonar/scanner/dotnet-sonarscanner begin \
           /k:"lncodes_csharp-generic" \
           /o:"last-night-codes" \
-          /d:sonar.projectName="csharp-generic"
           /d:sonar.host.url="https://sonarcloud.io" \
           /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
