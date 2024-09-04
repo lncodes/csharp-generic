@@ -40,11 +40,11 @@ jobs:
           /k:"lncodes_csharp-generic" \
           /n:"csharp-generic" \
           /d:sonar.host.url="https://sonarcloud.io" \
-          /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
       - name: Build project for analysis
         run: dotnet build ./src --configuration Release --no-restore
         
       - name: End SonarCloud Analysis
         run: ./.sonar/scanner/dotnet-sonarscanner end \
-          /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
