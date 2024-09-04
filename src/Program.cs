@@ -1,69 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
-namespace Lncodes.Example.Generic
+namespace Lncodes.Example.Generic;
+
+internal static class Program
 {
-    public class Program
+    /// <summary>
+    /// Main entry point for the program.
+    /// </summary>
+    private static void Main()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        protected Program() { }
-
-        /// <summary>
-        /// Main Program
-        /// </summary>
-        private static void Main()
+        var quizControllerTypeId = GetRandomQuizControllerId();
+        switch (quizControllerTypeId)
         {
-            var correctAnswer = 2;
-            var question = "1 + 1 =";
-            var choiceCollection = new int[] { 1, 2, 3, 4 };
-            var quizController = new QuizController<string, int, int[]>(question, correctAnswer, choiceCollection);
-
-            ShowQuizQuestion(quizController);
-            var userAnswer = Convert.ToInt32(GetUserAnswer());
-            CheckAnswer(quizController, userAnswer);
+            case 0:
+                var quizControllerType1 = new QuizController<string, int, List<int>>("1 + 1 =", 2, [1, 2, 3, 4]);
+                ShowQuizData(quizControllerType1);
+                CheckAnswer(quizControllerType1, int.Parse(Console.ReadLine()));
+                break;
+            case 1:
+                var quizControllerType2 = new QuizController<string, bool, SortedSet<bool>>("Is the sky blue?", true, [true, false]);
+                ShowQuizData(quizControllerType2);
+                CheckAnswer(quizControllerType2, bool.Parse(Console.ReadLine()));
+                break;
+            case 2:
+                var quizControllerType3 = new QuizController<string, string, HashSet<string>>("What is the capital of France?", "Paris", ["London", "Berlin", "Paris", "Madrid"]);
+                ShowQuizData(quizControllerType3);
+                CheckAnswer(quizControllerType3, Console.ReadLine());
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(quizControllerTypeId));
         }
+    }
 
-        /// <summary>
-        /// Method for get user answer
-        /// </summary>
-        /// <returns cref="string"></returns>
-        private static string GetUserAnswer()
-        {
-            Console.Write("Type your answer : ");
-            return Console.ReadLine();
-        }
+    /// <summary>
+    /// Generates a random quiz controller ID.
+    /// </summary>
+    /// <returns cref="int">Random quiz controller ID.</returns>
+    private static int GetRandomQuizControllerId()
+    {
+        const int amountOfEnemyTypes = 3;
+        return RandomNumberGenerator.GetInt32(amountOfEnemyTypes);
+    }
 
-        /// <summary>
-        /// Method for showing quiz question
-        /// </summary>
-        /// <typeparam name="TQuestion"></typeparam>
-        /// <typeparam name="TAnswer"></typeparam>
-        /// <typeparam name="TChoice"></typeparam>
-        /// <param name="quizController"></param>
-        private static void ShowQuizQuestion<TQuestion, TAnswer, TChoice>(QuizController<TQuestion, TAnswer, TChoice> quizController) where TChoice : ICollection<TAnswer>
-        {
-            Console.WriteLine("Quiz Program \n");
-            Console.WriteLine($"Question : {quizController.Question}");
-            Console.Write("Choice : ");
-            foreach (var choice in quizController.ChoiceCollection)
-                Console.Write($"[{choice}] ");
-            Console.WriteLine();
-        }
+    /// <summary>
+    /// Displays quiz data including question, choices, and answer type.
+    /// </summary>
+    /// <typeparam name="TQuestion">Type of the question.</typeparam>
+    /// <typeparam name="TAnswer">Type of the answer.</typeparam>
+    /// <typeparam name="TChoice">Type of the choices collection.</typeparam>
+    /// <param name="quizController">The quiz controller instance.</param>
+    private static void ShowQuizData<TQuestion, TAnswer, TChoice>(QuizController<TQuestion, TAnswer, TChoice> quizController) where TChoice : ICollection<TAnswer>
+    {
+        var choiceType = quizController.ChoiceCollection.GetType();
+        var choiceName = choiceType.Name.Replace("`1", $"<{choiceType.GenericTypeArguments[0].Name}>");
+        Console.WriteLine($"Question ({quizController.Question.GetType().Name}): {quizController.Question}");
+        Console.Write($"Choice ({choiceName}): ");
+        Console.WriteLine(string.Join(", ", quizController.ChoiceCollection));
+        Console.Write($"Type your answer ({quizController.Answer.GetType().Name}): ");
+    }
 
-        /// <summary>
-        /// Method for checking answer
-        /// </summary>
-        /// <typeparam name="TQusetion"></typeparam>
-        /// <typeparam name="TAnswer"></typeparam>
-        /// <typeparam name="TChoice"></typeparam>
-        /// <param name="quizController"></param>
-        /// <param name="userAnswer"></param>
-        private static void CheckAnswer<TQusetion, TAnswer, TChoice>(QuizController<TQusetion, TAnswer, TChoice> quizController, TAnswer userAnswer) where TChoice : ICollection<TAnswer>
-        {
-            Console.WriteLine();
-            quizController.CheckAnswer(userAnswer);
-        }
+    /// <summary>
+    /// Checks if the provided answer is correct and displays the result.
+    /// </summary>
+    /// <typeparam name="TQuestion">Type of the question.</typeparam>
+    /// <typeparam name="TAnswer">Type of the answer.</typeparam>
+    /// <typeparam name="TChoice">Type of the choices collection.</typeparam>
+    /// <param name="quizController">The quiz controller instance.</param>
+    /// <param name="answer">The user-provided answer.</param>
+    private static void CheckAnswer<TQuestion, TAnswer, TChoice>(QuizController<TQuestion, TAnswer, TChoice> quizController, TAnswer answer) where TChoice : ICollection<TAnswer>
+    {
+        Console.WriteLine();
+        quizController.CheckAnswer(answer);
     }
 }

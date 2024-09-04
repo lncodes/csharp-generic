@@ -1,0 +1,50 @@
+name: SonarCloud Analysis
+
+on:
+  workflow_run:
+    workflows: [".NET Core Build"]
+    types:
+      - completed
+
+jobs:
+  analyze:
+    name: SonarCloud Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'  # Ensure this matches the SDK version used in the build workflow
+
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v3
+        with:
+          path: ./.sonar/scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ./.sonar/scanner
+          dotnet tool install dotnet-sonarscanner --tool-path ./.sonar/scanner
+
+      - name: Begin SonarCloud Analysis
+        run: ./.sonar/scanner/dotnet-sonarscanner begin \
+          -Dsonar.organization=last-night-codes \
+          -Dsonar.projectKey=lncodes_csharp-generic \
+          -Dsonar.projectName=csharp-generic \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
+      - name: Build project for analysis
+        run: dotnet build --configuration Release --no-restore
+
+      - name: End SonarCloud Analysis
+        run: ./.sonar/scanner/dotnet-sonarscanner end \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
