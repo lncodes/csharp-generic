@@ -7,11 +7,11 @@
 
 <h1 align="center">C# Generic</h1>
 <p align="center">
-  <a href="{{REPOSITORY_URL}}/actions/workflows/net-core-build.yml">
-      <img src="{{REPOSITORY_URL}}/actions/workflows/net-core-build.yml/badge.svg">
+  <a href="https://github.com/lncodes/csharp-generic/actions/workflows/net-core-build.yml">
+      <img src="https://github.com/lncodes/csharp-generic/actions/workflows/net-core-build.yml/badge.svg">
   </a>
-  <a href="https://sonarcloud.io/dashboard?id=lncodes_{{REPOSITORY_NAME}}">
-      <img src="https://sonarcloud.io/api/project_badges/measure?project=lncodes_{{REPOSITORY_NAME}}&metric=alert_status">
+  <a href="https://sonarcloud.io/dashboard?id=lncodes_csharp-generic">
+      <img src="https://sonarcloud.io/api/project_badges/measure?project=lncodes_csharp-generic&metric=alert_status">
   </a>
 </p>
 
@@ -36,7 +36,7 @@ To set up this C# console application, follow these steps:
 
 1. Clone or download the project.
     ``` bash 
-    git clone {{REPOSITORY_URL}}.git
+    git clone https://github.com/lncodes/csharp-generic.git
     ```
 
 2. Open the project
@@ -65,7 +65,7 @@ We appreciate your interest in contributing to this project! For detailed guidel
 
 <h2 id="discussion">💬 Discussion</h2>
 
-If you have any questions or want to discuss anything related to this project, visit our [Discussion Forum]({{REPOSITORY_URL}}/discussions). You can also leave comments on [C# Generic - Last Night Codes](https://lncodes.com/csharp-generic/) blog post for more in-depth discussion on this project’s topics.
+If you have any questions or want to discuss anything related to this project, visit our [Discussion Forum](https://github.com/lncodes/csharp-generic/discussions). You can also leave comments on [C# Generic - Last Night Codes](https://lncodes.com/csharp-generic/) blog post for more in-depth discussion on this project’s topics.
 
 <h2 id="license"> 📋 License</h2>
 
