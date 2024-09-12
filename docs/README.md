@@ -26,7 +26,7 @@
 
 <h2 id="introduction">🌟 Introduction</h2>
 
-This repository demonstrates the use of C# Generic through a simple console application. In this repository, generics are used to create a flexible class that can handle different data types for the `question` and `answer` variables, making it easy to create various quiz variations with single implementation. By using generics, classes and methods can handle multiple data types, which improves performance, ensures type safety, and reduces code duplication.
+This repository demonstrates the use of C# Generic through a simple console application. In this repository, generic are used to create a flexible class that can handle different data types for the `question` and `answer` variables, making it easy to create various quiz variations with single implementation. By using generic, classes and methods can handle multiple data types, which improves performance, ensures type safety, and reduces code duplication.
 
 For more information about C# Generic, check out the blog post: [C# Generic - Last Night Codes](https://www.lncodes.com/csharp-generic).
 
