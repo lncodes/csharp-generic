@@ -1,4 +1,4 @@
-name: Update Markdown Files
+name: Update Markdown Placeholders
 
 on:
   pull_request:

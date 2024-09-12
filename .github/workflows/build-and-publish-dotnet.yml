@@ -1,4 +1,4 @@
-name: .NET Core Build
+name: Build and Publish .NET
 
 on:
   pull_request:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.x'  # Specify the .NET version
+          dotnet-version: '8.x'
 
       - name: Cache NuGet packages
         uses: actions/cache@v3

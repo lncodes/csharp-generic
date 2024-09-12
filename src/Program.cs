@@ -30,7 +30,7 @@ internal static class Program
                 CheckAnswer(quizControllerType3, Console.ReadLine());
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(quizControllerTypeId));
+                throw new InvalidOperationException($"Unexpected quiz type ID: {quizControllerTypeId}");
         }
     }
 

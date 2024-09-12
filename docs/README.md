@@ -7,8 +7,8 @@
 
 <h1 align="center">C# Generic</h1>
 <p align="center">
-  <a href="https://github.com/lncodes/csharp-generic/actions/workflows/net-core-build.yml">
-      <img src="https://github.com/lncodes/csharp-generic/actions/workflows/net-core-build.yml/badge.svg">
+  <a href="https://github.com/lncodes/csharp-generic/actions/workflows/build-and-publish-dotnet.yml">
+      <img src="https://github.com/lncodes/csharp-generic/actions/workflows/build-and-publish-dotnet.yml/badge.svg">
   </a>
   <a href="https://sonarcloud.io/dashboard?id=lncodes_csharp-generic">
       <img src="https://sonarcloud.io/api/project_badges/measure?project=lncodes_csharp-generic&metric=alert_status">
@@ -26,9 +26,9 @@
 
 <h2 id="introduction">🌟 Introduction</h2>
 
-This repository demonstrates the use of C# Generic through a simple console application. When the application is running, it displays three different quiz variations, each variation using a different data type for the `answer` and `choice` variables. This project highlights the power of generic, where a single generic class can easily manage various data types.
+This repository demonstrates the use of C# Generic through a simple console application. In this repository, a generic class is designed to create multiple quiz variations, each with different data types for the `question` and `answer` variables. By using generics, classes and methods can handle multiple data types, which improves performance, ensures type safety, reduces code duplication.
 
-For more information about C# Generic, check out the blog post [C# Generics - Last Night Codes](https://www.lncodes.com/csharp-generic).
+For more information about C# Generic, check out the blog post: [C# Generic - Last Night Codes](https://www.lncodes.com/csharp-generic).
 
 <h2 id="installation">📦 Installation</h2>
 
