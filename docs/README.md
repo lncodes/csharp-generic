@@ -7,8 +7,8 @@
 
 <h1 align="center">C# Generic</h1>
 <p align="center">
-  <a href="{{REPOSITORY_LINK}}/actions/workflows/net-core-build.yml">
-      <img src="{{REPOSITORY_LINK}}/actions/workflows/net-core-build.yml/badge.svg">
+  <a href="https://github.com/lncodes/csharp-generic/actions/workflows/build-and-publish-dotnet.yml">
+      <img src="https://github.com/lncodes/csharp-generic/actions/workflows/build-and-publish-dotnet.yml/badge.svg">
   </a>
   <a href="https://sonarcloud.io/dashboard?id=lncodes_csharp-generic">
       <img src="https://sonarcloud.io/api/project_badges/measure?project=lncodes_csharp-generic&metric=alert_status">
@@ -26,9 +26,9 @@
 
 <h2 id="introduction">🌟 Introduction</h2>
 
-This repository demonstrates the use of C# Generic through a simple console application. When the application is running, it displays three different quiz variations, each variation using a different data type for the `answer` and `choice` variables. This project highlights the power of generic, where a single generic class can easily manage various data types.
+This repository demonstrates the use of C# Generic through a simple console application. In this repository, generic are used to create a flexible class that can handle different data types for the `question` and `answer` variables, making it easy to create various quiz variations with single implementation. By using generic, classes and methods can handle multiple data types, which improves performance, ensures type safety, and reduces code duplication.
 
-For more information about C# Generic, check out the blog post [C# Generics - Last Night Codes](https://www.lncodes.com/csharp-generic).
+For more information about C# Generic, check out the blog post: [C# Generic - Last Night Codes](https://www.lncodes.com/csharp-generic).
 
 <h2 id="installation">📦 Installation</h2>
 
@@ -36,7 +36,7 @@ To set up this C# console application, follow these steps:
 
 1. Clone or download the project.
     ``` bash 
-    git clone {{REPOSITORY_LINK}}.git
+    git clone https://github.com/lncodes/csharp-generic.git
     ```
 
 2. Open the project
@@ -65,7 +65,7 @@ We appreciate your interest in contributing to this project! For detailed guidel
 
 <h2 id="discussion">💬 Discussion</h2>
 
-If you have any questions or want to discuss anything related to this project, visit our [Discussion Forum]({{REPOSITORY_LINK}}/discussions). You can also leave comments on [C# Generic - Last Night Codes](https://lncodes.com/csharp-generic/) blog post for more in-depth discussion on this project’s topics.
+If you have any questions or want to discuss anything related to this project, visit our [Discussion Forum](https://github.com/lncodes/csharp-generic/discussions). You can also leave comments on [C# Generic - Last Night Codes](https://lncodes.com/csharp-generic/) blog post for more in-depth discussion on this project’s topics.
 
 <h2 id="license"> 📋 License</h2>
 

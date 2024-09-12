@@ -1,4 +1,4 @@
-name: .NET Core Build
+name: Build and Publish .NET
 
 on:
   pull_request:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.x'  # Specify the .NET version
+          dotnet-version: '8.x'
 
       - name: Cache NuGet packages
         uses: actions/cache@v3
@@ -30,10 +30,10 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./src
 
       - name: Build project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./src --configuration Release --no-restore
 
       - name: Publish artifacts
-        run: dotnet publish --configuration Release --output ./publish --no-build
+        run: dotnet publish ./src --configuration Release --output ./publish --no-build
